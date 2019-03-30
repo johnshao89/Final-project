@@ -16,3 +16,5 @@ Python/Flask/Jinja: Use python to manipulate the data that extracted from the we
 Pandas/SQLAlchemy: Take the input data from user and clean it for analysis. Analyzing the data with pandas or filtering the data according to different parameters
 
 Machine Learning(optional if time allowed): Use machine learning and linear regression to explore the statistical relation between each input parameter and output results
+
+
