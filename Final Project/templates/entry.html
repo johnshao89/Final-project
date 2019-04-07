@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>{{the_title}}</h2>
+<form method="POST" action="/input_data" id="data_input">
+    <table>
+        <p>
+            Please Use This Website To Input Your Experimental Results:
+        </p>
+        <tr>
+            <th>Project Code:</th>
+            <td>
+                    <select name="projects" form="data_input">
+                            <option value="001-AAA">001-AAA</option>
+                            <option value="002-AAB">002-AAB</option>
+                            <option value="003-AAC">003-AAC</option>
+                            <option value="004-AAD">004-AAD</option>
+                    </select>
+            </td>
+        </tr>   
+        <tr>
+            <th>Temperature:</th>
+            <td><input type="text" name="temperature"></td>
+        </tr>
+        <tr>
+            <th>Agitation Rate:</th>
+            <td><input type="text" name="rate"></td>
+        </tr>
+        <tr>
+            <th>Reaction Time:</th>
+            <td><input type="text" name="reaction_time"></td>
+        </tr>
+        <tr>
+            <th>Solvent:</th>
+            <td>
+                <select name="solvents" form="data_input">
+                    <option value="MeCN">MeCN</option>
+                    <option value="Acetone">Acetone</option>
+                    <option value="THF">THF</option>
+                    <option value="DCM">DCM</option>
+                </select>
+        </tr>
+    </table>
+    <p>When you're ready, click this button:</p>
+    <p><input value='Submit' type='submit'>
+    <input value="Reset" type="reset"></p>
+
+
+
+
+
+</form>
+{% endblock %}

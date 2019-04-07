@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2>{{ the_title }}</h2>
+<p>You most recently submitted the following data:</p>
+<table>
+    <tr>
+        <td>Project Code</td>
+        <td>{{ the_project }}</td>
+    </tr>
+    <tr>
+        <td>Temperature</td>
+        <td>{{ the_temperature }}</td>
+    </tr>
+    <tr>
+        <td>Agitation Rate</td>
+        <td>{{ the_rate }}</td>
+    </tr>
+    <tr>
+        <td>Reaction Time</td>
+        <td>{{ the_time }}</td>
+    </tr>
+    <tr>
+        <td>Solvent</td>
+        <td>{{ the_solvent }}</td>
+    </tr>
+</table>
+{% endblock %}
