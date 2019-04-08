@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block body %}
+<h2>Here is the results for all projects</h2>
+<table>
+    <tr>
+        {% for row_title in row_titles %}
+        <th>{{row_title}}</th>
+        {% endfor %}
+    </tr>
+    {% for items in the_data %}
+    <tr>
+        {% for item in items %}
+            <td>{{item}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<p>
+    <a href="entry">Click here to go back to <em>Input Your Data</em></a>
+</p>
+<form method="POST" action="/project" id="project_select">
+    <p>Choose the Project you want to see results:
+        <select name="sum_projects" form="project_select">
+            <option value="001-AAA">001-AAA</option>
+            <option value="002-AAB">002-AAB</option>
+            <option value="003-AAC">003-AAC</option>
+            <option value="004-AAD">004-AAD</option>
+        </select>
+        <input value='Submit' type='submit'>
+    </p>
+    </form>
+
+
+{% endblock %}

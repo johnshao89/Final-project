@@ -43,10 +43,16 @@
     <p>When you're ready, click this button:</p>
     <p><input value='Submit' type='submit'>
     <input value="Reset" type="reset"></p>
-
-
-
-
-
 </form>
+<form method="POST" action="/project" id="project_select">
+    <p>Choose the Project you want to see results:
+        <select name="sum_projects" form="project_select">
+            <option value="001-AAA">001-AAA</option>
+            <option value="002-AAB">002-AAB</option>
+            <option value="003-AAC">003-AAC</option>
+            <option value="004-AAD">004-AAD</option>
+        </select>
+        <input value='Submit' type='submit'>
+    </p>
+    </form>
 {% endblock %}

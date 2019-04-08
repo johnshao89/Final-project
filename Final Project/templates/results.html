@@ -4,24 +4,39 @@
 <p>You most recently submitted the following data:</p>
 <table>
     <tr>
-        <td>Project Code</td>
+        <td>Project Code:</td>
         <td>{{ the_project }}</td>
     </tr>
     <tr>
-        <td>Temperature</td>
+        <td>Temperature:</td>
         <td>{{ the_temperature }}</td>
     </tr>
     <tr>
-        <td>Agitation Rate</td>
+        <td>Agitation Rate:</td>
         <td>{{ the_rate }}</td>
     </tr>
     <tr>
-        <td>Reaction Time</td>
+        <td>Reaction Time:</td>
         <td>{{ the_time }}</td>
     </tr>
     <tr>
-        <td>Solvent</td>
+        <td>Solvent:</td>
         <td>{{ the_solvent }}</td>
     </tr>
 </table>
+<br>
+<p><a href="entry">Click here to go back</a></p>
+<p><a href="sum_info">Click here to go to the summary of experiments</a></p>
+
+<form method="POST" action="/project" id="project_select">
+<p>Choose the Project you want to see results:
+    <select name="sum_projects" form="project_select">
+        <option value="001-AAA">001-AAA</option>
+        <option value="002-AAB">002-AAB</option>
+        <option value="003-AAC">003-AAC</option>
+        <option value="004-AAD">004-AAD</option>
+    </select>
+    <input value='Submit' type='submit'>
+</p>
+</form>
 {% endblock %}
