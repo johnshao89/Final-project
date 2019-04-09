@@ -1,14 +1,21 @@
 #Import modules
 from flask import Flask, render_template,request
+import mysql.connector
 
 #Set up the flask
 app=Flask(__name__)
 
-#Define a function to save all the input data each time
-def store_data(*args):
-    with open ("project_data.txt","a") as data_storage:
-        print(args,sep="|",file=data_storage)
-
+#Define a function to save all the input data into sql database
+'''@app.route("/database")
+def view_database():
+        dbconfig={'host':'127.0.0.1','user':'guest','password':'123456','database':'projectresults',}
+        conn=mysql.connector.connect(**dbconfig)
+        cursor=conn.cursor()
+        _SQL="""insert into results (project_code,temperature,agitation_rate,reaction_time,solvents)
+        values (%s,%s,%s,%s,%s)
+        """
+        cursor.execute(_SQL,())
+'''
 #Define the home page
 @app.route("/")
 @app.route("/entry")
@@ -17,17 +24,27 @@ def home_page():
 
 #Define the data collection from entry.html and show in results.html
 @app.route("/input_data",methods=["POST"])
-def input_data():
-    in_project=request.form["projects"]
-    in_temperature=request.form["temperature"]
-    in_rate=request.form["rate"]
-    in_time=request.form["reaction_time"]
-    in_solvent=request.form["solvents"]
-    with open("project_data.txt","a") as storage:
-            print(in_project,in_temperature,in_rate,in_time,in_solvent, sep="|",file=storage)
-    return render_template("results.html", the_project=in_project,
-    the_temperature=in_temperature,the_rate=in_rate,the_time=in_time,
-    the_solvent=in_solvent)
+def input_data():        
+        in_project=request.form["projects"]
+        in_temperature=request.form["temperature"]
+        in_rate=request.form["rate"]
+        in_time=request.form["reaction_time"]
+        in_solvent=request.form["solvents"]
+        dbconfig={'host':'127.0.0.1','user':'guest','password':'123456','database':'projectresults',}
+        conn=mysql.connector.connect(**dbconfig)
+        cursor=conn.cursor()
+        _SQL="""insert into results (project_code,temperature,agitation_rate,reaction_time,solvents)
+        values (%s,%s,%s,%s,%s)
+        """
+        cursor.execute(_SQL,(in_project,in_temperature,in_rate,in_time,in_solvent))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        with open("project_data.txt","a") as storage:
+                print(in_project,in_temperature,in_rate,in_time,in_solvent, sep="|",file=storage)
+        return render_template("results.html", the_project=in_project,
+        the_temperature=in_temperature,the_rate=in_rate,the_time=in_time,
+        the_solvent=in_solvent)
 
 #define the website to view the overall result
 @app.route("/sum_info")
