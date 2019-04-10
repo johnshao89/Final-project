@@ -1,31 +1,49 @@
 {% extends 'base.html' %}
 {% block body %}
-<h2>{{ the_title }}</h2>
-<p>You most recently submitted the following data:</p>
-<table>
+<div class="title">
+<h3>Your most recently submitted data is:</h3>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-info">    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="entry">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sum_info">Summary of Results</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Porject" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <br>
+<table class="table table-striped">
     <tr>
-        <td>Project Code:</td>
+        <th>Project Code:</th>
         <td>{{ the_project }}</td>
     </tr>
     <tr>
-        <td>Temperature:</td>
+        <th>Temperature:</th>
         <td>{{ the_temperature }}</td>
     </tr>
     <tr>
-        <td>Agitation Rate:</td>
+        <th>Agitation Rate:</th>
         <td>{{ the_rate }}</td>
     </tr>
     <tr>
-        <td>Reaction Time:</td>
+        <th>Reaction Time:</th>
         <td>{{ the_time }}</td>
     </tr>
     <tr>
-        <td>Solvent:</td>
+        <th>Solvent:</th>
         <td>{{ the_solvent }}</td>
     </tr>
 </table>
 <br>
-<p><a href="entry">Click here to go back</a></p>
+<p><a href="entry">Click here to input more results</a></p>
 <p><a href="sum_info">Click here to go to the summary of experiments</a></p>
 
 <form method="POST" action="/project" id="project_select">

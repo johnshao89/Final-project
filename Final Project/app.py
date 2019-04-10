@@ -20,7 +20,7 @@ def view_database():
 @app.route("/")
 @app.route("/entry")
 def home_page():
-    return render_template("entry.html",the_title="Welcome to the Design of Experiment")
+    return render_template("entry.html",the_title="Welcome to the Design of Experiment Data Management")
 
 #Define the data collection from entry.html and show in results.html
 @app.route("/input_data",methods=["POST"])
@@ -71,7 +71,6 @@ def sel_project():
                                 for item in line.strip().split("|"):
                                         content[-1].append(item)
         return render_template("single_project.html", row_titles=titles,the_data=content)
-
 
 
 
