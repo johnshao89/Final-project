@@ -4,6 +4,7 @@
 <div class="title">
 <h2>{{the_title}}</h2>
 </div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-info">    
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
@@ -22,7 +23,7 @@
           </nav>
           <br>
           <p>Please Use This Website To Input Your Experimental Results:</p>
-<form method="POST" action="/input_data" id="data_input"></form>
+    <form method="POST" action="/input_data" id="data_input">
     <table class="table table-striped table-hover">
         <tr>
             <th scope="row">Project Code:</th>
@@ -56,6 +57,14 @@
                     <option value="THF">THF</option>
                     <option value="DCM">DCM</option>
                 </select>
+        </tr>
+        <tr>
+            <th scope="row">Purity:</th>
+            <td><input type="text" name="purity"></td>
+        </tr>
+        <tr>
+            <th scope="row">Yield:</th>
+            <td><input type="text" name="yield"></td>
         </tr>
     </table>
     <p>When you're ready, click <em>submit</em> button or <em>reset y</em>our input:</p>
