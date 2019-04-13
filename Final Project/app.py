@@ -1,21 +1,14 @@
 #Import modules
 from flask import Flask, render_template,request
 import mysql.connector
+from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+import sqlalchemy
+from sqlalchemy import create_engine
 
 #Set up the flask
 app=Flask(__name__)
 
-#Define a function to save all the input data into sql database
-'''@app.route("/database")
-def view_database():
-        dbconfig={'host':'127.0.0.1','user':'guest','password':'123456','database':'projectresults',}
-        conn=mysql.connector.connect(**dbconfig)
-        cursor=conn.cursor()
-        _SQL="""insert into results (project_code,temperature,agitation_rate,reaction_time,solvents)
-        values (%s,%s,%s,%s,%s)
-        """
-        cursor.execute(_SQL,())
-'''
 #Define the home page
 @app.route("/")
 @app.route("/entry")
@@ -75,10 +68,6 @@ def sel_project():
         return render_template("single_project.html", row_titles=titles,the_data=content)
 
 
-#define the website for holding json data for each project
-@app.route("/json/<pro_code>")
-def project_json(pro_code):
-        pass
 
 
 
