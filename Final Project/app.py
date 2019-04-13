@@ -1,10 +1,11 @@
 #Import modules
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,jsonify
 import mysql.connector
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import sqlalchemy
 from sqlalchemy import create_engine
+from collections import defaultdict
 
 #Set up the flask
 app=Flask(__name__)
@@ -28,10 +29,22 @@ def input_data():
         dbconfig={'host':'127.0.0.1','user':'guest','password':'123456','database':'projectresults',}
         conn=mysql.connector.connect(**dbconfig)
         cursor=conn.cursor()
-        _SQL="""insert into results (project_code,temperature,agitation_rate,reaction_time,solvents,purity,yield)
-        values (%s,%s,%s,%s,%s,%s,%s)
+        _SQL1="""Create Table if not exists results (
+                id int auto_increment primary key,
+                project_code varchar(50),
+                temperature varchar(50),
+                agitation_rate varchar(50),
+                reaction_time varchar(50),
+                solvents varchar(50),
+                purity varchar(50),
+                yield varchar(50)
+        );
         """
-        cursor.execute(_SQL,(in_project,in_temperature,in_rate,in_time,in_solvent,in_purity,in_yield))
+        cursor.execute(_SQL1)
+        _SQL2="""insert into results (project_code,temperature,agitation_rate,reaction_time,solvents,purity,yield)
+        values (%s,%s,%s,%s,%s,%s,%s);
+        """
+        cursor.execute(_SQL2,(in_project,in_temperature,in_rate,in_time,in_solvent,in_purity,in_yield))
         conn.commit()
         cursor.close()
         conn.close()
@@ -66,8 +79,22 @@ def sel_project():
                                 for item in line.strip().split("|"):
                                         content[-1].append(item)
         return render_template("single_project.html", row_titles=titles,the_data=content)
-
-
+@app.route("/metadata/<proj_code>")
+def get_json(proj_code):
+        content=[]
+        with open ("project_data.txt","r") as data:
+                for row in data:
+                        if row.split("|")[0]==proj_code:
+                                metadata_project=defaultdict(list)
+                                metadata_project["Project_Code"]=row.split("|")[0]
+                                metadata_project["Temperature"]=float(row.split("|")[1])
+                                metadata_project["Agitate_Rate"]=float(row.split("|")[2])
+                                metadata_project["Reaction_Time"]=float(row.split("|")[3])
+                                metadata_project["solvents"]=row.split("|")[4]
+                                metadata_project["Purity"]=float(row.split("|")[5])
+                                metadata_project["Yield"]=float(row.split("|")[6])
+                                content.append(metadata_project)
+        return jsonify (content)
 
 
 
