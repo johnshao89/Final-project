@@ -1,18 +1,14 @@
-<html>
-<head>
-<title>
-Login page
-</title>
-</head>
-<body>
-<h1>Login Page</h1>
+{% extends "base.html" %}
+{% block body %}
+<h2>Please enter username and password to get started</h2>
+<div id="loginform">
 <form name="login">
-Username<input type="text" name="userid"/>
-Password<input type="password" name="pswrd"/>
+Username: <input type="text" name="userid"/>
+Password: <input type="password" name="pswrd"/>
 <input type="button" onclick="check(this.form)" value="Login"/>
-<input type="reset" value="Cancel"/>
+<input type="reset" value="Reset"/>
 </form>
 <script language="javascript" src="../static/js.js">
 </script>
-</body>
-</html>
+</div>
+{% endblock %}

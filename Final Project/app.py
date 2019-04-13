@@ -9,10 +9,13 @@ from collections import defaultdict
 
 #Set up the flask
 app=Flask(__name__)
-
-#Define the home page
 @app.route("/")
+def login():
+        return render_template("login_verify.html")
+#Define the home page
 @app.route("/entry")
+@app.route("/entry.html")
+@app.route("/templates/entry")
 def home_page():
     return render_template("entry.html",the_title="Welcome to the Design of Experiment Data Management")
 
